@@ -1,0 +1,20 @@
+CREATE DATABASE IF NOT EXISTS corespace;
+USE corespace;
+
+CREATE TABLE IF NOT EXISTS users (
+  uuid VARCHAR(255) UNIQUE NOT NULL,
+  username LONGTEXT NOT NULL,
+  passwd LONGTEXT NOT NULL,
+  email LONGTEXT NOT NULL,
+
+  PRIMARY KEY(uuid)
+);
+
+CREATE TABLE IF NOT EXISTS bank (
+  bid VARCHAR(255) UNIQUE NOT NULL,
+  bcOwner VARCHAR (255) NOT NULL,
+  credits BIGINT,
+  prendingCredits BIGINT,
+
+  PRIMARY KEY(bid)
+);

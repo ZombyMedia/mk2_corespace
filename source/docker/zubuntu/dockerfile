@@ -1,0 +1,10 @@
+FROM ubuntu:latest
+MAINTAINER ZombyMediaIC
+
+RUN apt-get update
+RUN apt-get upgrade -y
+
+ENV TZ=Europe/Berlin
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+RUN apt-get install nano wget curl php htop screen -y
