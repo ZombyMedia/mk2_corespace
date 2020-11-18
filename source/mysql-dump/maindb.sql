@@ -2,19 +2,31 @@ CREATE DATABASE IF NOT EXISTS corespace;
 USE corespace;
 
 CREATE TABLE IF NOT EXISTS users (
-  uuid VARCHAR(255) UNIQUE NOT NULL,
-  username LONGTEXT NOT NULL,
-  passwd LONGTEXT NOT NULL,
-  email LONGTEXT NOT NULL,
+	uuid VARCHAR(255) UNIQUE NOT NULL,
+    username LONGTEXT NOT NULL UNIQUE,
+    passwd LONGTEXT NOT NULL,
+    email LONGTEXT NOT NULL,
+    
+    PRIMARY KEY(uuid)
+);
 
-  PRIMARY KEY(uuid)
+CREATE TABLE IF NOT EXISTS logins (
+	lid VARCHAR(255) UNIQUE NOT NULL,
+    uuid VARCHAR(255) NOT NULL,
+    loginTime LONGTEXT NOT NULL,
+    logoutTime LONGTEXT NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS bank (
-  bid VARCHAR(255) UNIQUE NOT NULL,
-  bcOwner VARCHAR (255) NOT NULL,
-  credits BIGINT,
-  prendingCredits BIGINT,
-
-  PRIMARY KEY(bid)
+	bid VARCHAR(255) UNIQUE NOT NULL,
+    bcOwner VARCHAR(255) NOT NULL,
+    credits BIGINT,
+    pendingCredits BIGINT,
+    
+    PRIMARY KEY(bid)
 );
+
+### CREATE TABLE IF NOT EXISTS appdata;
+
+### CREATE TABLE IF NOT EXISTS transactions;
+### CREATE TABLE IF NOT EXISTS trans_workers;
