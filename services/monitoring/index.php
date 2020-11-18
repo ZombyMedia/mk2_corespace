@@ -29,6 +29,46 @@ require('assets/DBConnector.php');
     </script>
   </head>
   <body>
-
+    <table>
+      <tr>
+        <th scope="col">UUID</th>
+        <th scope="col">Username</th>
+        <th scope="col">Password</th>
+        <th scope="col">Email</th>
+      </tr>
+      <?php
+        $sql = "SELECT * FROM users";
+        $result = $conn->query($sql);
+          while($row = $result->fetch_assoc()) {
+            echo "<tr class=\"users-display\">";
+            echo "<td class=\"users\">" . $row["uuid"] . "</td>";
+            echo "<td class=\"users\">" . $row["username"] . "</td>";
+            echo "<td class=\"users\">" . $row["passwd"] . "</td>";
+            echo "<td class=\"users\">" . $row["email"] . "</td>";
+            echo "</tr>";
+          }
+      ?>
+    </table>
+    </br>
+    <table>
+      <tr>
+        <th scope="col">BID</th>
+        <th scope="col">UUID</th>
+        <th scope="col">CREDITS</th>
+        <th scope="col">PENDING</th>
+      </tr>
+      <?php
+        $sql = "SELECT * FROM bank";
+        $result = $conn->query($sql);
+          while($row = $result->fetch_assoc()) {
+            echo "<tr class=\"users-display\">";
+            echo "<td class=\"users\">" . $row["bid"] . "</td>";
+            echo "<td class=\"users\">" . $row["bcOwner"] . "</td>";
+            echo "<td class=\"users\">" . $row["credits"] . "</td>";
+            echo "<td class=\"users\">" . $row["pendingCredits"] . "</td>";
+            echo "</tr>";
+          }
+      ?>
+    </table>
   </body>
 </html>
