@@ -9,18 +9,28 @@
 <?php
 
   require('../assets/DBConnector.php');
+  require('../assets/cryption.php');
   require('modules/bank/createAccount.php');
+  require('modules/bank/deleteAccount.php');
+  require('modules/bank/restoreAccount.php');
 
   $requesttype = $_POST["request"];
   $username = $_POST["username"];
+  $bid = $_POST["bankid"];
+  $backupcode = $_POST["backupcode"];
 
   if ($requesttype == "create") {
     $return_value = createBankAccount($conn, $username);
-    var_dump($return_value);
   } elseif ($requesttype == "delete") {
-    // code...
+    $return_value = deleteBankAccount($conn, $username, $bid);
+    echo $return_value;
+  } elseif ($requesttype == "restore") {
+    $return_value = restoreBankAccount($conn, $backupcode, $username);
+    echo $return_value;
   } elseif ($requesttype == "freeze") {
     // code...
+  } else {
+    echo "No requesttype specified";
   }
 
 ?>
