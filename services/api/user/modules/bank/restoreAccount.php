@@ -50,6 +50,17 @@
     }
   }
 
+  function recreateAccount($conn, $bid, $uuid, $credits) {
+    $sql = "INSERT INTO bank(bid, bcOwner, credits)
+      VALUES (\"$bid\", \"$uuid\", \"$credits\")";
+
+    if ($conn->query($sql) === TRUE) {
+      return "BankAccount created successfully";
+    } else {
+      return "Error: " . $sql . "<br>" . $conn->error;
+    }
+  }
+
   function createNewAccount($conn, $uuid, $credits) {
     $newBid = generateBankID();
 
@@ -72,12 +83,12 @@
 
     if ($test_result) {
       if (checkAccountOwner($conn, $bid, $uuid)) {
-        return addToExistingAccount($conn, $bid, $credits);
+        return "owns: " . addToExistingAccount($conn, $bid, $credits);
       } else {
-        return createNewAccount($conn, $uuid, $credits);
+        return "downs cn: " . createNewAccount($conn, $uuid, $credits);
       }
     } else {
-      return createNewAccount($conn, $uuid, $credits);
+      return "nac: " . recreateAccount($conn, $bid, $uuid, $credits);
     }
   }
 
