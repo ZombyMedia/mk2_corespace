@@ -5,3 +5,5 @@ The license is applying to all new and old files in this repository.
 
 
 This README file is not complete and will be changed in the future!
+
+UPDATED: 23.11.2020
